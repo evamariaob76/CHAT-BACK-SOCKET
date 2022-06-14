@@ -18,6 +18,7 @@ class Server {
 
         this.port = process.env.PORT || 8000;
 
+        
         //Conectar a BD
         dbConnection();
         // Http server
