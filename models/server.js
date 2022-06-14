@@ -4,6 +4,7 @@ const http     = require('http');
 const socketio = require('socket.io');
 const path     = require('path');
 const cors     = require('cors');
+const timeout = require('connect-timeout')
 
 const Sockets  = require('./sockets');
 const { dbConnection } = require('../database/config');
@@ -13,6 +14,8 @@ class Server {
     constructor() {
 
         this.app  = express();
+        this.app.use(timeout('5s'))
+
         this.port = process.env.PORT;
 
         //Conectar a BD
