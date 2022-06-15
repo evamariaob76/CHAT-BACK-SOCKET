@@ -24,9 +24,6 @@ router.post('/', [
     validarCampos
 ],login);
 
-router.put('/actualizarAvatar', [
-
-],actualizarAvatar);
 
 
 router.get('/renew', [validarJWT],renewToken );
