@@ -2,7 +2,7 @@
 
 const {Router} = require ('express');
 const { check } = require('express-validator');
-const { crearUsuario, renewToken, login,actualizarAvatar } = require('../controllers/auth');
+const { crearUsuario, renewToken, login } = require('../controllers/auth');
 const { validarCampos } = require('../middelwares/validar-campos');
 const { validarJWT } = require('../middelwares/validar-jwt');
 
@@ -24,9 +24,9 @@ router.post('/', [
     validarCampos
 ],login);
 
-router.put('/actualizarAvatar', [
+/*router.put('/actualizarAvatar', [
 
-],actualizarAvatar);
+],actualizarAvatar);*/
 
 
 router.get('/renew', [validarJWT],renewToken );
