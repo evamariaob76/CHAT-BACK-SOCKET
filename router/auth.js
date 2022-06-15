@@ -24,7 +24,7 @@ router.post('/', [
     validarCampos
 ],login);
 
-router.post('/actualizarAvatar', [
+router.put('/actualizarAvatar', [
 
 ],actualizarAvatar);
 
