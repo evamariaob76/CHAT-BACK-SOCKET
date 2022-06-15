@@ -37,7 +37,7 @@ const crearUsuario = async (req, res= response)=>{
     }
 
 }
-/*const actualizarAvatar=async(req, res)=>{
+const actualizarAvatar=async(req, res)=>{
         const {  email, img } = req.body;
     console.log(email,img)
          try {
@@ -67,7 +67,7 @@ const crearUsuario = async (req, res= response)=>{
         });
     }
 
-}*/
+}
 const login = async(req, res) => {
 
     const {  email, password } = req.body;
@@ -135,4 +135,5 @@ module.exports ={
     crearUsuario,
     login,
     renewToken,
+    actualizarAvatar
 }
