@@ -14,7 +14,6 @@ class Server {
     constructor() {
 
         this.app  = express();
-        this.app.use(timeout('5s'))
 
         this.port = process.env.PORT || 8080;
 
