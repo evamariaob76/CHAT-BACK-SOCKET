@@ -16,7 +16,7 @@ class Server {
         this.app  = express();
         this.app.use(timeout('5s'))
 
-        this.port = process.env.PORT || 8080;
+        this.port = process.env.PORT || 80;
 
         
         //Conectar a BD
