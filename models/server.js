@@ -60,9 +60,9 @@ class Server {
         this.configurarSockets();
 
         // Inicializar Server
-        this.server.listen( this.port, () => {
+        this.server.listen( this.port, (err) => {
             console.log('Server corriendo en puerto:', this.port );
-            console.log("Database_URL", process.env.DB_STRING);
+            console.log("error", err);
 
         });
     }
