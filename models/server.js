@@ -60,9 +60,8 @@ class Server {
         this.configurarSockets();
 
         // Inicializar Server
-        this.server.listen( this.port, (err) => {
+        this.server.listen( this.port, () => {
             console.log('Server corriendo en puerto:', this.port );
-            console.log("error", err);
 
         });
     }
