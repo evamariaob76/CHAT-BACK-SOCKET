@@ -23,6 +23,5 @@
   },
     "engines": {
     "node": "16.15.0"
-  },
-  "proxy": "https://chat-backend-socket.herokuapp.com"
+  }
 }
