@@ -14,9 +14,9 @@ class Server {
     constructor() {
 
         this.app  = express();
-        this.app.use(timeout('5s'))
+        //this.app.use(timeout('5s'))
 
-        this.port = process.env.PORT || 3000;
+        this.port = process.env.PORT || 8000;
 
         
         //Conectar a BD
