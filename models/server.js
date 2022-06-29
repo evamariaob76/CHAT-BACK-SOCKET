@@ -62,6 +62,8 @@ class Server {
         // Inicializar Server
         this.server.listen( this.port, () => {
             console.log('Server corriendo en puerto:', this.port );
+            console.log("Database_URL", process.env.DB_STRING);
+
         });
     }
 
