@@ -21,8 +21,8 @@
     "mongoose": "^6.3.6",
     "socket.io": "^4.5.1"
   },
-      "engines": {
+    "engines": {
     "node": "16.15.0"
   },
-  "proxy": "https://chat-backend-socket.herokuapp.com/"
+  "proxy": "https://chat-backend-socket.herokuapp.com"
 }
