@@ -3,6 +3,7 @@ const { usuarioConectado,
         usuarioDesconectado,
         grabarMensaje,
         getUsuarios } = require('../controllers/sockets');
+const { totalMensajes, actualizarMensajesLeidos } = require('../controllers/mensajes');
 
 class Sockets {
 
@@ -14,21 +15,20 @@ class Sockets {
     }
 
     socketEvents() {
+
+
         // On connection
         this.io.on('connection', async( socket ) => {
-
             const [ valido, uid ] = comprobarJWT( socket.handshake.query['x-token']  );
 
             if ( !valido ) {
                 console.log('socket no identificado');
                 return socket.disconnect();
             }
-
-            await usuarioConectado( uid );
-
+           await usuarioConectado( uid );
+           //await totalMensajes( uid );
             // Unir al usuario a una sala de socket.io
             socket.join( uid );
-
             // TODO: Validar el JWT 
             // Si el token no es válido, desconectar
 
@@ -37,15 +37,34 @@ class Sockets {
             // TODO: Emitir todos los usuarios conectados
             this.io.emit( 'lista-usuarios', await getUsuarios() )
 
-            // TODO: Socket join, uid
+            //Emitir todos los mensajes no leidos
+
+            this.io.emit('totalMensajes', await totalMensajes(uid))
+          //  this.io.emit('actualizarMensajes', await actualizarMensajesLeidos(uid) )
+
+
+
+              socket.on( 'actualizarMensajes', async( usuario ) => {
+                console.log('entrando')
+                 this.io.emit('actualizarMensajes', await actualizarMensajesLeidos(usuario))
+
+
+            });
+
 
             // TODO: Escuchar cuando el cliente manda un mensaje
             socket.on( 'mensaje-personal', async( payload ) => {
                 const mensaje = await grabarMensaje( payload );
+
                 this.io.to( payload.para ).emit( 'mensaje-personal', mensaje );
                 this.io.to( payload.de ).emit( 'mensaje-personal', mensaje );
+              // this.io.emit('actualizarMensajes', await actualizarMensajesLeidos(payload.de))
+
+
             });
-            
+
+
+
 
             // TODO: Disconnect
             // Marcar en la BD que el usuario se desconecto

@@ -23,7 +23,13 @@ const UsuarioSchema = Schema({
         type:String,
         required:false
 
-    }
+    },
+
+    totalNoLeidos:{
+        type:Number,
+        'default':0
+    },
+
 });
 UsuarioSchema.method('toJSON', function (){
     const {__v, _id, password, ...object}= this.toObject();

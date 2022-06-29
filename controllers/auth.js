@@ -1,8 +1,8 @@
 const bcrypt = require("bcryptjs");
 const { response } = require("express");
-const usuario = require("../models/usuario");
 const Usuario = require("../models/usuario");
-const {generarJWT} = require('../helpers/jwt')
+const {generarJWT} = require('../helpers/jwt');
+const Mensaje = require("../models/mensaje");
 
 const crearUsuario = async (req, res= response)=>{
     try {
@@ -39,10 +39,10 @@ const crearUsuario = async (req, res= response)=>{
 }
 const actualizarAvatar=async(req, res)=>{
         const {  email, img } = req.body;
-    console.log(email,img)
+        console.log(email,img)
          try {
         const existeEmail= await Usuario.findOne({email});
-            console.log(existeEmail)
+           // console.log(existeEmail)
         // Verificar si existe el correo
         if ( !existeEmail ) {
             return res.status(404).json({
@@ -128,12 +128,15 @@ const renewToken = async(req, res) => {
         usuario,
         token,
     })
-}
 
+
+
+}
+   
 
 module.exports ={
     crearUsuario,
     login,
     renewToken,
-    actualizarAvatar
+    actualizarAvatar,
 }

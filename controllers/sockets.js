@@ -33,6 +33,7 @@ const grabarMensaje = async( payload ) => {
     try {
         
         const mensaje = new Mensaje( payload );
+
         await mensaje.save();
 
         return mensaje;
@@ -49,5 +50,5 @@ module.exports = {
     usuarioConectado,
     usuarioDesconectado,
     getUsuarios,
-    grabarMensaje
+    grabarMensaje,
 }

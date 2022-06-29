@@ -6,17 +6,25 @@ const MensajeSchema = Schema({
     de: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
-        required: true
+        required: true,
+
     },
     para: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
-        required: true
+        required: true,
+
     },
     mensaje: {
         type: String,
         required: true
+    },
+    leido: {
+        type: Boolean,
+        default:false,
+
     }
+
 },{
     timestamps: true
 });
