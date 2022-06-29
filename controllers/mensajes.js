@@ -26,32 +26,6 @@ const obtenerChat = async (req, res)=>{
 }
 
 
-const totalMensajes = async (uid)=>{
-    const mensaje = await Mensaje.find({para:uid, leido:false})
-   // const cantidad =mensaje.length; 
-  // const filter = {_id:uid};
-    //const update ={totalNoLeidos:cantidad}  
-   // const total = await Usuario.findOneAndUpdate(filter, update);
-       // console.log(mensaje.length)
-        // console.log(usuario)
-
-   // const usuario= await Usuario.findOneAndUpdate('62b70002b34a03634fe2a3f1',update )
-   /*res.json({
-        ok:true,
-        mensaje,
-        usuario,
-     
-    })*/
-   // console.log(mensaje)
-
-     return mensaje
-  
-
-
-
-}
-
-
 const totalMensajesLeidos = async (req,res)=>{
     const mensajesPara=req.params.para;
     const mensajesDe = req.params.de;
@@ -97,7 +71,6 @@ const actualizarMensajesLeidos = async (req,res)=>{
 
 module.exports={
     obtenerChat,
-    totalMensajes,
     actualizarMensajesLeidos,
     totalMensajesLeidos,
     totalMensajesNoLeidos
