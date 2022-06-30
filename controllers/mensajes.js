@@ -34,7 +34,8 @@ const totalMensajesLeidos = async (req,res)=>{
     res.json({
         ok:true +'aqui',
         mensajesLeidos:mensaje.length,
-        de:mensajesDe
+        de:mensajesDe,
+        para:mensajesPara
     })
 
 }
@@ -46,7 +47,9 @@ const totalMensajesNoLeidos = async (req,res)=>{
     res.json({
         ok:true +'aqui',
         mensajesNoLeidos:mensaje.length,
-        de:mensajesDe
+        de:mensajesDe,
+        para:mensajesPara
+
     })
 
 }
