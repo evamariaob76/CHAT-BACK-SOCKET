@@ -18,7 +18,6 @@ const obtenerChat = async (req, res)=>{
         .sort ({createAt:'asc'})
         .limit(30 );
 
-
     res.json({
         ok:true,
         mensajes:last30
@@ -30,10 +29,9 @@ const totalMensajesLeidos = async (req,res)=>{
     const mensajesPara=req.params.para;
     const mensajesDe = req.params.de;
     const mensaje= await Mensaje.find({de:mensajesDe, para:mensajesPara, leido:true}) ;
-
     res.json({
         ok:true +'aqui',
-        mensajesLeidos:mensaje.length,
+        mensajesLeidos:mensaje,
         de:mensajesDe,
         para:mensajesPara
     })
@@ -43,7 +41,6 @@ const totalMensajesNoLeidos = async (req,res)=>{
     const mensajesPara=req.params.para;
     const mensajesDe = req.params.de;
     const mensaje= await Mensaje.find({de:mensajesDe, para:mensajesPara, leido:false}) ;
-
     res.json({
         ok:true +'aqui',
         mensajesNoLeidos:mensaje.length,
@@ -55,28 +52,40 @@ const totalMensajesNoLeidos = async (req,res)=>{
 }
     
 
+  
 
 const actualizarMensajesLeidos = async (req,res)=>{
     const mensajesPara=req.params.para;
     const mensajesDe = req.params.de;
 
-    const mensaje= await Mensaje.updateMany({de:mensajesDe, para:mensajesPara},{$set:{"leido":true}}) ;
+    const mensaje= await Mensaje.updateMany({de:mensajesDe, para:mensajesPara} ,{$set:{leido:true}}) ;
 
     res.json({
         ok:true +'aqui',
-        mensajesLeidos:mensaje
+        mensajesNoLeidos:mensaje,
     })
 
 
 }
+const totamensajesPorLeer = async (req,res)=>{
+    const mensajesPara=req.params.para;
+    const mensajesDe = req.params.de;
+    const mensaje= await Mensaje.find({de:mensajesPara, para:mensajesDe, leido:false}) ;
+    res.json({
+        ok:true +'aqui',
+        mensajesLeidos:mensaje,
+        de:mensajesDe,
+        para:mensajesPara
+    })
 
-
+}
 
 module.exports={
     obtenerChat,
     actualizarMensajesLeidos,
     totalMensajesLeidos,
-    totalMensajesNoLeidos
+    totalMensajesNoLeidos,
+    totamensajesPorLeer
     
     
 }
