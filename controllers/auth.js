@@ -3,6 +3,7 @@ const { response } = require("express");
 const Usuario = require("../models/usuario");
 const {generarJWT} = require('../helpers/jwt');
 const Mensaje = require("../models/mensaje");
+//var cloudinary = require('cloudinary').v2;
 
 const crearUsuario = async (req, res= response)=>{
     try {
@@ -39,7 +40,6 @@ const crearUsuario = async (req, res= response)=>{
 }
 const actualizarAvatar=async(req, res)=>{
         const {  email, img } = req.body;
-        console.log(email,img)
          try {
         const existeEmail= await Usuario.findOne({email});
            // console.log(existeEmail)
@@ -66,6 +66,30 @@ const actualizarAvatar=async(req, res)=>{
             msg: 'Hable con el administrador'
         });
     }
+
+}
+
+
+const avatar=async(req,res)=>{
+            const {  email } = req.body;
+
+console.log(email)
+        const existeEmail= await Usuario.findOne({email});
+         console.log(existeEmail)
+        // Verificar si existe el correo
+
+       // const imagen = existeEmail.img
+       // console.log(imagen+'imagen')
+ //cloudinary.v2.uploader.destroy(existeEmail.img, function(result) {
+//console.log(result) })
+       res.json({
+            ok: true + 'ok',
+            existeEmail
+            
+        });
+
+
+
 
 }
 const login = async(req, res) => {
@@ -127,6 +151,7 @@ const renewToken = async(req, res) => {
         ok: true,
         usuario,
         token,
+        
     })
 
 
@@ -139,4 +164,5 @@ module.exports ={
     login,
     renewToken,
     actualizarAvatar,
+    avatar
 }
